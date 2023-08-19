@@ -1,9 +1,9 @@
 import HttpStatus from 'http-status-codes';
-import * as StudentService from '../services/bus.service.js';
+import * as BusService from '../services/bus.service.js';
 
 export const getAll = async (req,res,next) => {
 	try{
-		const data = await StudentService.getAllBuses();
+		const data = await BusService.getAllBuses();
 		res.status(HttpStatus.OK)
 			.json({
 				code: HttpStatus.OK,
@@ -12,6 +12,17 @@ export const getAll = async (req,res,next) => {
 			});
 	}
 	catch(ex){
+		next(ex);
+	}
+}
+
+export const save = async (req, res, next) => {
+	try{
+		BusService.addBus();
+		res.status(201).json({message: 'created'}) ;
+	}
+	catch(ex){
+		console.log(ex);
 		next(ex);
 	}
 }
