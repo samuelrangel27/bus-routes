@@ -3,13 +3,14 @@ export const getAllBuses = async () => {
 	return Bus.find();
 }
 
-export const addBus = ({vin, marca, modelo}) => {
+export const addBus = ({vin, brand, model, seatsAmount}) => {
     const bus = new Bus({
         vin,
-        marca,
-        modelo
+        brand,
+        model,
+        seatsAmount
     });
-    bus.save().then(result => {
+    return bus.save().then(result => {
         console.log(result);
         return result;
     })

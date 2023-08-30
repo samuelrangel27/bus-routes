@@ -19,8 +19,12 @@ export const getAll = async (req,res,next) => {
 export const save = async (req, res, next) => {
 	try{
 		console.log(req.body);
-		BusService.addBus(req.body);
-		res.status(201).json({message: 'created'}) ;
+		const bus = await BusService.addBus(req.body);
+		if(bus)
+			return res.status(201).json({ 
+				message: 'created',
+				data: bus
+			});
 	}
 	catch(ex){
 		console.log(ex);

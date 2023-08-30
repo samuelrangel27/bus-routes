@@ -1,0 +1,1 @@
+export const parseErrors = ({errors}) => errors.map(e => e.msg);

@@ -6,12 +6,16 @@ const busSchema = new Schema({
         type:String,
         required: true
     },
-    marca: {
+    brand: {
         type:String,
         required: true
     },
-    modelo: {
+    model: {
         type:String,
+        required: true
+    },
+    seatsAmount: {
+        type: Number,
         required: true
     }
 }, {timestamps: true});
