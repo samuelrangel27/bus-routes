@@ -18,7 +18,8 @@ export const getAll = async (req,res,next) => {
 
 export const save = async (req, res, next) => {
 	try{
-		BusService.addBus();
+		console.log(req.body);
+		BusService.addBus(req.body);
 		res.status(201).json({message: 'created'}) ;
 	}
 	catch(ex){
