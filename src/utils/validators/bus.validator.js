@@ -14,3 +14,8 @@ export const createBusValidator = () => [
         next();
     }
 ];
+
+export const updateBusValidator = () => [
+    body('id').exists().withMessage('Id field is required'),
+    ...createBusValidator()
+]

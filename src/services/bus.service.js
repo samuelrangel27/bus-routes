@@ -4,8 +4,8 @@ export const getAllBuses = async () => {
 	return Bus.find();
 }
 
-export const getById = ({id}) => {
-    return Bus.findById(id);
+export const getById = ({_id}) => {
+    return Bus.findById(_id);
 }
 
 export const addBus = ({vin, brand, model, seatsAmount}) => {
@@ -25,4 +25,20 @@ export const addBus = ({vin, brand, model, seatsAmount}) => {
         console.log(err);
         throw err;
     })
+}
+
+export const updateBus = async ({id, vin, brand, model, seatsAmount}) => {
+    // const bus = getById(id);
+    const bus = await Bus.findByIdAndUpdate(id, {brand, model, seatsAmount});
+    if(!bus)
+        throw new ApplicationError(`No bus with id ${id} was found`, 404);
+    return getById({id});
+}
+
+export const deleteById = async ({_id}) => {
+    const bus = await getById({_id});
+    if(!bus)
+        throw new ApplicationError(`No bus with id ${_id} was found`, 404);
+    await Bus.deleteOne({_id});
+    return bus;
 }

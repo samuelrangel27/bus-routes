@@ -6,6 +6,8 @@ import { catchErrors } from '../utils/error.handling.js'
 const router = express.Router();
 
 router.get('', catchErrors(BusesController.getAll));
-router.get('/:id', catchErrors(BusesController.getById));
+router.get('/:_id', catchErrors(BusesController.getById));
 router.post('', ...BusValidator.createBusValidator(), catchErrors(BusesController.save));
+router.put('', ...BusValidator.createBusValidator(), catchErrors(BusesController.update));
+router.delete('/:_id', catchErrors(BusesController.deleteById));
 export default router;
