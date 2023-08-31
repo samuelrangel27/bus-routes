@@ -1,5 +1,6 @@
 import { body,validationResult } from 'express-validator';
-import * as CommonValidator from './common.validator.js';
+import { parseErrors } from './common.validator.js';
+import { ApplicationError } from '../error.handling.js';
 
 export const createBusValidator = () => [
     body('vin').isLength({min: 14, max: 14}).withMessage('Vin field is required and must be 14 characters length string'),
@@ -9,11 +10,7 @@ export const createBusValidator = () => [
     (req,res,next) => {
         const errors = validationResult(req);
         if(!errors.isEmpty())
-            return res.status(400)
-                .json({
-                    message: 'There are some validation errors',
-                    errors: CommonValidator.parseErrors(errors)
-                })
+            throw new ApplicationError('There are some validation errors', parseErrors(errors))
         next();
     }
 ];
