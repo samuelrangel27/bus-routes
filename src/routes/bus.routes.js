@@ -8,6 +8,6 @@ const router = express.Router();
 router.get('', catchErrors(BusesController.getAll));
 router.get('/:_id', catchErrors(BusesController.getById));
 router.post('', ...BusValidator.createBusValidator(), catchErrors(BusesController.save));
-router.put('', ...BusValidator.createBusValidator(), catchErrors(BusesController.update));
+router.put('', ...BusValidator.updateBusValidator(), catchErrors(BusesController.update));
 router.delete('/:_id', catchErrors(BusesController.deleteById));
 export default router;

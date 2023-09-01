@@ -1,5 +1,6 @@
-import Bus from '../models/bus.js';
+import Bus from "../models/bus.js";
 import { ApplicationError } from '../utils/error.handling.js';
+
 export const getAllBuses = async () => { 
 	return Bus.find();
 }
@@ -27,12 +28,12 @@ export const addBus = ({vin, brand, model, seatsAmount}) => {
     })
 }
 
-export const updateBus = async ({id, vin, brand, model, seatsAmount}) => {
+export const updateBus = async ({_id, vin, brand, model, seatsAmount}) => {
     // const bus = getById(id);
-    const bus = await Bus.findByIdAndUpdate(id, {brand, model, seatsAmount});
+    const bus = await Bus.findByIdAndUpdate(_id, {brand, model, seatsAmount});
     if(!bus)
-        throw new ApplicationError(`No bus with id ${id} was found`, 404);
-    return getById({id});
+        throw new ApplicationError(`No bus with id ${_id} was found`, 404);
+    return getById({_id});
 }
 
 export const deleteById = async ({_id}) => {
