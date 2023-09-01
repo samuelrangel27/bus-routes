@@ -15,7 +15,7 @@ export const add = ({address, city, zip, description}) => {
 }
 
 export const update = async ({_id,address, city, zip, description}) => {
-    const data = await Station.findByIdAndUpdate(_id, {brand, model, seatsAmount});
+    const data = await Station.findByIdAndUpdate(_id, {address, city, zip, description});
     if(!data)
         throw new ApplicationError(`No station with id ${_id} was found`, 404);
     return getById({_id});

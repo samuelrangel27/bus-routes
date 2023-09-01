@@ -14,7 +14,7 @@ export const errorHandler = (err,req,res,next) => {
 
 export class ApplicationError extends Error {
     constructor(message, code, errors) {
-        super(message || 'Business rule validation error');
+        super(errors ? message : 'Business rule validation error');
         this.name = 'Validation Error';
         this.code = code || 400;
         this.errors = errors || [message];
